@@ -151,7 +151,7 @@ class CuraEngineLEInfillGeneratePluginConan(ConanFile):
         self.requires("grpc/1.54.3")
         self.requires("ctre/3.7.2")
         self.requires("neargye-semver/0.3.0")
-        self.requires("curaengine_grpc_definitions/0.3.0@ultimaker/stable")
+        self.requires("curaengine_grpc_definitions/0.3.0@lulzbot/stable")
 
     def validate(self):
         # validate the minimum cpp standard supported. For C++ projects only

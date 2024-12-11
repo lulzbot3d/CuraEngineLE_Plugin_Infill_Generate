@@ -6,7 +6,7 @@ on:
     inputs:
       plugin_conan_version:
         description: 'Plugin Conan Version'
-        default: 'curaengine_plugin_infill_generate/latest@ultimaker/testing'
+        default: 'curaengine_plugin_infill_generate/latest@lulzbot/testing'
         required: true
         type: string
       conan_args:

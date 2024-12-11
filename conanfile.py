@@ -13,13 +13,13 @@ from jinja2 import Template
 required_conan_version = ">=2.7.0"
 
 
-class CuraEngineInfillGeneratePluginConan(ConanFile):
+class CuraEngineLEInfillGeneratePluginConan(ConanFile):
     name = "curaengine_plugin_infill_generate"
     author = "UltiMaker"
     description = "CuraEngine Tiled infill generation plugin"
     license = ("agpl-3.0", "lgpl-3.0", "bsd-4")
     url = "https://github.com/conan-io/conan-center-index"
-    homepage = "https://github.com/Ultimaker/CuraEngine_plugin_infill_generate"
+    homepage = "https://github.com/lulzbot3d/CuraEngineLE_Plugin_Infill_Generate"
     topics = ("protobuf", "asio", "plugin", "curaengine", "gcode-generation", "3D-printing")
     package_type = "library"
     settings = "os", "arch", "compiler", "build_type"

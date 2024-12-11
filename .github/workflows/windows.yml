@@ -6,7 +6,7 @@ on:
     inputs:
       plugin_conan_version:
         description: 'Plugin Conan Version'
-        default: 'curaengine_plugin_infill_generate/latest@ultimaker/testing'
+        default: 'curaengine_plugin_infill_generate/latest@lulzbot/testing'
         required: true
         type: string
       conan_args:
@@ -32,7 +32,7 @@ on:
     inputs:
       plugin_conan_version:
         description: 'Plugin Conan Version'
-        default: 'curaengine_plugin_infill_generate/latest@ultimaker/testing'
+        default: 'curaengine_plugin_infill_generate/latest@lulzbot/testing'
         required: true
         type: string
       conan_args:
@@ -88,8 +88,8 @@ jobs:
 
       - name: Get Conan configuration
         run: |
-          conan config install https://github.com/Ultimaker/conan-config.git
-          conan config install https://github.com/Ultimaker/conan-config.git -a "-b runner/${{ runner.os }}/${{ runner.arch }}"
+          conan config install https://github.com/lulzbot3d/Conan_LulzBot_Config.git
+          conan config install https://github.com/lulzbot3d/Conan_LulzBot_Config.git -a "-b runner/${{ runner.os }}/${{ runner.arch }}"
 
       - name: Use Conan download cache (Powershell)
         run: conan config set storage.download_cache="C:\Users\runneradmin\.conan\conan_download_cache"
@@ -100,7 +100,7 @@ jobs:
       - name: Upload the Package(s)
         if: always()
         run: |
-          conan upload "*" -r cura --all -c
+          conan upload "*" -r cura-le --all -c
 
       - name: Upload the binary
         uses: actions/upload-artifact@v3
@@ -134,16 +134,3 @@ jobs:
           path: |
             run_info.sh
           retention-days: 5
-
-  notify-export:
-    if: ${{ always() }}
-    needs: [ cura-installer-create ]
-
-    uses: ultimaker/cura-workflows/.github/workflows/slack-notify.yml@main
-    with:
-      success: ${{ contains(join(needs.*.result, ','), 'success') }}
-      success_title: "Create the Cura distributions"
-      success_body: "Installers for ${{ inputs.plugin_conan_version }}"
-      failure_title: "Failed to create the Cura distributions"
-      failure_body: "Failed to create at least 1 installer for ${{ inputs.plugin_conan_version }}"
-    secrets: inherit

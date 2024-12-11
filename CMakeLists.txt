@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.23)
-project(curaengine_plugin_infill_generate)
+project(curaenginele_plugin_infill_generate)
 
 find_package(curaengine_grpc_definitions REQUIRED)
 find_package(asio-grpc REQUIRED)
